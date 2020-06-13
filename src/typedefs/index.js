@@ -2,53 +2,54 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type User {
-    username: String!
-    favoriteGenre: String!
-    id: ID!
-  }
-
-  type Token {
-    value: String!
-  }
-
-  type Book {
-    title: String!
-    published: Int!
-    author: Author!
-    genres: [String!]!
-    id: ID!
-  }
-
-  type Author {
+    email: String!
+    password: String!
     name: String!
-    born: Int
-    numBooks: Int!
+    username: String!
+    resumes: [Resume]
+    profession: String
+    phone: String
+    linkedin: String
+    education: [Education]
     id: ID!
+  }
+
+  type Education {
+    school: String
+    major: String
+  }
+
+  type Resume {
+    title: String!
+    description: String!
+    date: String!
+    likes: Int!
+    data: String
+    tags: [String]
+    user: User!
+    id: ID!
+  }
+
+  type AuthData {
+    token: String!
+    username: String!
   }
 
   type Query {
-    authorCount: Int!
-    bookCount: Int!
-    allBooks(author: String, genre: String): [Book!]!
-    allAuthors: [Author!]!
-    allGenres: [String!]!
-    me: User
+    resumeCount: Int!
+    allResumes: [Resume!]!
+    allUsers: [User!]!
   }
 
   type Mutation {
-    addBook(
+    addResume(
       title: String!
-      author: String!
-      published: Int!
-      genres: [String!]!
-    ): Book
-    editAuthor(name: String!, setBornTo: Int!): Author
-    createUser(username: String!, favoriteGenre: String!): User
-    login(username: String!, password: String!): Token
-  }
-
-  type Subscription {
-    bookAdded: Book!
+      description: String!
+      data: String
+      tags: [String]
+    ): Resume
+    signup(username: String!, password: String!): User
+    login(username: String!, password: String!): AuthData
   }
 `;
 
