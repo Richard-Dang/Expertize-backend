@@ -24,6 +24,6 @@ app.use(cors());
 // app.use(express.static("build"));
 // app.use(express.json());
 app.use(bodyParser.json());
-app.use(queryLogger());
+// app.use(queryLogger());
 
 module.exports = app;

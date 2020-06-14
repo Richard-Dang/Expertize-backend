@@ -1,5 +1,5 @@
-const Query = require("../resolvers/queries");
-const Mutation = require("../resolvers/mutations");
+const Query = require("./queries");
+const Mutation = require("./mutations");
 
 const resolvers = {
   Query,

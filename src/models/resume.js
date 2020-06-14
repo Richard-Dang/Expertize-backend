@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const resumeSchema = mongoose.Schema({
-  title: { type: String, required: true, minlength: 5 },
+  title: { type: String, required: true, minlength: 4 },
   description: { type: String },
   date: {
     type: Date,
     required: true,
   },
-  likes: { type: Number },
-  data: { type: Buffer },
+  likes: { type: Number, default: 0 },
+  data: { type: String }, //TODO: Use buffer type
   tags: [
     {
       type: String,
@@ -17,14 +17,6 @@ const resumeSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  },
-});
-
-resumeSchema.set("toJSON", {
-  transform: (doc, obj) => {
-    obj.id = obj._id.toString();
-    delete obj._id;
-    delete obj.__v;
   },
 });
 
