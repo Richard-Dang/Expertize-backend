@@ -10,8 +10,8 @@ const context = async ({ req }) => {
   const auth = req ? req.headers.authorization : null;
   if (auth && auth.toLowerCase().startsWith("bearer ")) {
     try {
-      const { id } = jwt.verify(auth.substring(7), config.JWT_SECRET);
-      const currentUser = await User.findById(id);
+      const { userId } = jwt.verify(auth.substring(7), config.JWT_SECRET);
+      const currentUser = await User.findById(userId);
       return { currentUser };
     } catch (error) {
       throw new AuthenticationError("Not authenticated");

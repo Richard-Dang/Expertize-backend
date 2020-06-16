@@ -5,5 +5,6 @@ exports.Query = gql`
     resumeCount: Int!
     allResumes: [Resume!]!
     allUsers: [User!]!
+    currentUser: User
   }
 `;
