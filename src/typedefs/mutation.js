@@ -13,7 +13,7 @@ exports.Mutation = gql`
       password: String!
       name: String!
       email: String!
-    ): User
+    ): AuthData
     login(email: String!, password: String!): AuthData
   }
 `;

@@ -16,14 +16,11 @@ const login = async (root, { email, password }) => {
     throw new UserInputError("Invalid credentials");
   }
 
-  const token = jwt.sign(
-    { username: user.username, id: user._id },
-    config.JWT_SECRET
-  );
+  const token = jwt.sign({ userId: user._id }, config.JWT_SECRET);
 
   return {
     token,
-    username: user.username,
+    currentUser: user,
   };
 };
 
